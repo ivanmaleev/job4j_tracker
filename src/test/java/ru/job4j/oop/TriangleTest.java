@@ -36,4 +36,14 @@ public class TriangleTest {
         double rsl = triangle.area();
         assertThat(rsl, closeTo(2, 0.001));
     }
+
+    @Test
+    public void areaMin1() {
+        Point a = new Point(0, 3);
+        Point b = new Point(0, 5);
+        Point c = new Point(0, 2);
+        Triangle triangle = new Triangle(a, b, c);
+        double rsl = triangle.area();
+        assertThat(rsl, closeTo(-1, 0.001));
+    }
 }
