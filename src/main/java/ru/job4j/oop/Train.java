@@ -8,6 +8,6 @@ public class Train implements Vehicle {
 
     @Override
     public void refuel() {
-
+        System.out.println("Coal");
     }
 }

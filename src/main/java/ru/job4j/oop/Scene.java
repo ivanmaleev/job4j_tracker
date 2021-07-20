@@ -11,6 +11,7 @@ public class Scene {
         vehicles[2] = train;
         for (Vehicle veh : vehicles) {
             veh.move();
+            veh.refuel();
         }
     }
 }

@@ -8,6 +8,6 @@ public class Plane implements Vehicle {
 
     @Override
     public void refuel() {
-
+        System.out.println("Fuel");
     }
 }

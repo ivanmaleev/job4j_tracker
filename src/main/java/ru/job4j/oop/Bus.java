@@ -8,6 +8,6 @@ public class Bus implements Vehicle {
 
     @Override
     public void refuel() {
-
+        System.out.println("petrol");
     }
 }
