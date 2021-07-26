@@ -16,7 +16,6 @@ public class UniqueText {
                 rsl = false;
                 break;
             }
-            check.add(word);
         }
         return rsl;
     }
