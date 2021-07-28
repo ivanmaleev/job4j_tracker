@@ -8,6 +8,8 @@ public class College {
         student.setFio("Ivanov Ivan Ivanych");
         student.setGroup("12-03");
         student.setDate(new Date());
-        System.out.println("ФИО " + student.getFio() + ", группа " + student.getGroup() + ", дата поступления " + student.getDate());
+        System.out.println("ФИО " + student.getFio() + ", группа "
+                + student.getGroup() + ", дата поступления "
+                + student.getDate());
     }
 }

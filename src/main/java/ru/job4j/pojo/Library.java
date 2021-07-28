@@ -16,7 +16,8 @@ public class Library {
         setOfBooks[3] = otherBook;
 
         for (int i = 0; i < setOfBooks.length; i++) {
-            System.out.println("Name " + setOfBooks[i].getName() + ", number of pages " + setOfBooks[i].getNumberOfPages());
+            System.out.println("Name " + setOfBooks[i].getName()
+                    + ", number of pages " + setOfBooks[i].getNumberOfPages());
         }
 
         System.out.println("---------------------");
@@ -26,14 +27,16 @@ public class Library {
         setOfBooks[0] = tempBook;
 
         for (int i = 0; i < setOfBooks.length; i++) {
-            System.out.println("Name " + setOfBooks[i].getName() + ", number of pages " + setOfBooks[i].getNumberOfPages());
+            System.out.println("Name " + setOfBooks[i].getName()
+                    + ", number of pages " + setOfBooks[i].getNumberOfPages());
         }
 
         System.out.println("---------------------");
 
         for (int i = 0; i < setOfBooks.length; i++) {
             if ("Clean code".equals(setOfBooks[i].getName())) {
-                System.out.println("Name " + setOfBooks[i].getName() + ", number of pages " + setOfBooks[i].getNumberOfPages());
+                System.out.println("Name " + setOfBooks[i].getName()
+                        + ", number of pages " + setOfBooks[i].getNumberOfPages());
             }
         }
     }
