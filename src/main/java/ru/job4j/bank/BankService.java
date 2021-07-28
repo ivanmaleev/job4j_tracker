@@ -17,7 +17,7 @@ public class BankService {
         if (user != null) {
             List<Account> accounts = users.get(user);
             if (!accounts.contains(account)) {
-                users.get(user).add(account);
+                accounts.add(account);
             }
         }
     }
