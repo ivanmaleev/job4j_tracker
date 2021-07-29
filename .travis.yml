@@ -18,3 +18,4 @@ notifications:
       - ivanmaleev@inbox.ru
     on_success: never # default: change
     on_failure: always # default: always
+    CODECOV_TOKEN='87c9367b-7e17-475c-a0f9-552d2f444019'
