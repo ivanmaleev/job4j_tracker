@@ -4,7 +4,6 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.SortByNameItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class ItemCompare {
@@ -29,6 +28,5 @@ public class ItemCompare {
         for (Item item : items) {
             System.out.println(item);
         }
-
     }
 }
