@@ -12,7 +12,7 @@ public class ArrayStream {
         array.add(6);
         array.add(-7);
         array.add(10);
-        List<Integer> posList = array.stream().filter(element -> element > 1)
+        List<Integer> posList = array.stream().filter(element -> element > 0)
                 .collect(Collectors.toList());
         posList.forEach(System.out::println);
     }
