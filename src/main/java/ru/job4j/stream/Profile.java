@@ -1,6 +1,6 @@
 package ru.job4j.stream;
 
-public class Profile {
+public class Profile implements Comparable<Profile> {
     private Address address;
 
     public Profile(Address address) {
@@ -9,5 +9,10 @@ public class Profile {
 
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public int compareTo(Profile o) {
+        return address.compareTo(o.getAddress());
     }
 }
