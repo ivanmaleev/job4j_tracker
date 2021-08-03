@@ -2,7 +2,7 @@ package ru.job4j.stream;
 
 import java.util.Objects;
 
-public class Address implements Comparable<Address> {
+public class Address {
     private String city;
 
     private String street;
@@ -54,8 +54,4 @@ public class Address implements Comparable<Address> {
         return apartment;
     }
 
-    @Override
-    public int compareTo(Address o) {
-        return city.compareTo(o.getCity());
-    }
 }
