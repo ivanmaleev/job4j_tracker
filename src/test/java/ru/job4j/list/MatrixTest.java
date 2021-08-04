@@ -1,12 +1,7 @@
 package ru.job4j.list;
 
 import org.junit.Test;
-import ru.job4j.stream.School;
-import ru.job4j.stream.Student;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
