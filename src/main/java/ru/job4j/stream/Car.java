@@ -50,6 +50,17 @@ public class Car {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Car{"
+                + "brand='" + brand + '\''
+                + ", model='" + model + '\''
+                + ", horsePower=" + horsePower
+                + ", maxSpeed=" + maxSpeed
+                + ", numberOfCylinders=" + numberOfCylinders
+                + '}';
+    }
+
     public static void main(String[] args) {
         Car car = new Builder().buildBrand("Audi")
                 .buildModel("Q8")
@@ -57,5 +68,6 @@ public class Car {
                 .buildMaxSpeed(300)
                 .buildNumberOfCylinders(8)
                 .build();
+        System.out.println(car);
     }
 }
