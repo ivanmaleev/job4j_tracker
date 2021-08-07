@@ -1,7 +1,6 @@
 package ru.job4j.stream;
 
 import java.util.*;
-import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +29,7 @@ public class Analyze {
                 .flatMap(pupil -> pupil.getSubjects().stream())
                 .collect(Collectors.groupingBy(Subject::getName,
                         LinkedHashMap::new,
-                        Collectors.averagingDouble(score -> (double) score.getScore())))
+                        Collectors.averagingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
                 .map(subMap -> new Tuple(subMap.getKey(), subMap.getValue()))
@@ -51,7 +50,7 @@ public class Analyze {
         return stream
                 .flatMap(pupil -> pupil.getSubjects().stream())
                 .collect(Collectors.groupingBy(Subject::getName,
-                        Collectors.summingDouble(score -> (double) score.getScore())))
+                        Collectors.summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
                 .map(subMap -> new Tuple(subMap.getKey(), subMap.getValue()))
