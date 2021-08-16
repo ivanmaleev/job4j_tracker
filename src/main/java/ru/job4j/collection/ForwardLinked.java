@@ -29,6 +29,11 @@ public class ForwardLinked<T> implements Iterable<T> {
         }
     }
 
+    public boolean revert() {
+        //TODO impl reverts of linked list.
+        return false;
+    }
+
     public void addFirst(T value) {
         head = new Node<T>(value, head);
     }
