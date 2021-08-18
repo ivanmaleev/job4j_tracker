@@ -32,6 +32,13 @@ public class ListUtilsTest {
     }
 
     @Test
+    public void whenAddAfter() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ListUtils.addAfter(input, 1, 3);
+        assertThat(Arrays.asList(0, 1, 3, 2), Is.is(input));
+    }
+
+    @Test
     public void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(0, 10, 2, 10, 5, 10, 7));
         ListUtils.removeIf(input, el -> el == 10);
