@@ -24,7 +24,6 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        //int i = Objects.checkIndex(size, container.length);
         modCount++;
         if (size == container.length) {
             grow();
