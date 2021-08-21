@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.is;
 
 public class SimpleMapTest {
 
-
     @Test
     public void putGet() {
         Map<String, Integer> map = new SimpleMap<>();
