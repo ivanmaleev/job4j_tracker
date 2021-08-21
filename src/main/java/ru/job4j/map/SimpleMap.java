@@ -27,15 +27,18 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if (capacity * LOAD_FACTOR < (count + 1)) {
-            expand();
-        }
         modCount++;
         int index = indexFor(hash(key.hashCode()));
         if (table[index] == null) {
+            if (capacity * LOAD_FACTOR < (count + 1)) {
+                expand();
+            }
             table[index] = new MapEntry<>(key, value);
             count++;
         } else {
+            if (table[index].value.equals(value)) {
+                return false;
+            }
             table[index].value = value;
         }
         return true;

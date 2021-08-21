@@ -13,14 +13,14 @@ public class SimpleMapTest {
 
     @Test
     public void putGet() {
-        Map<String, Integer> map = new SimpleMap<>();
-        map.put("One", 1);
-        map.put("Two", 2);
-        map.put("Three", 3);
-        map.put("Four", 4);
-        assertThat(map.get("Four"), is(4));
-        assertThat(map.get("Two"), is(2));
-        assertThat(map.get("Three"), is(4));
+        Map<Integer, Integer> map = new SimpleMap<>();
+        map.put(1, 1);
+        map.put(2, 2);
+        map.put(3, 3);
+        map.put(4, 4);
+        assertThat(map.get(4), is(4));
+        assertThat(map.get(2), is(2));
+        assertThat(map.get(3), is(3));
     }
 
     @Test
@@ -36,18 +36,18 @@ public class SimpleMapTest {
 
     @Test
     public void expand() {
-        Map<String, Integer> map = new SimpleMap<>(2);
-        map.put("One", 1);
-        map.put("Two", 2);
-        map.put("Three", 3);
-        map.put("Four", 4);
-        map.put("Five", 5);
-        map.put("Six", 6);
-        map.put("Seven", 7);
-        map.put("Eight", 8);
-        map.put("Nine", 9);
-        assertThat(map.get("Nine"), is(9));
-        assertThat(map.get("Four"), is(6));
+        Map<Integer, Integer> map = new SimpleMap<>(8);
+        map.put(1, 1);
+        map.put(2, 2);
+        map.put(3, 3);
+        map.put(4, 4);
+        map.put(5, 5);
+        map.put(6, 6);
+        map.put(7, 7);
+        map.put(8, 8);
+        map.put(9, 9);
+        assertThat(map.get(9), is(9));
+        assertThat(map.get(6), is(6));
     }
 
     @Test
