@@ -10,6 +10,13 @@ public class SqlTracker implements Store {
 
     private Connection cn;
 
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader()
                 .getResourceAsStream("app.properties")) {
@@ -36,16 +43,21 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
-                     cn.prepareStatement("insert into items(name, created) values (?, ?)")) {
+                     cn.prepareStatement(
+                             "insert into items(name, created) values (?, ?)",
+                             Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
-            if (statement.executeUpdate() > 0) {
-                return item;
+            statement.execute();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return item;
     }
 
     @Override
