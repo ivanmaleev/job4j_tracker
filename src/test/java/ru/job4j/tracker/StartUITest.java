@@ -8,6 +8,8 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class StartUITest {
 
@@ -164,5 +166,70 @@ public class StartUITest {
                         + "0. Exit Program" + ln
                 )
         );
+    }
+
+    @Test
+    public void whenDeleteItemMok() {
+        MemTracker memTracker = new MemTracker();
+        Output output = new ConsoleOutput();
+        Item item = memTracker.add(new Item("Deleted item"));
+        Input in = mock(Input.class);
+        when(in.askInt(any(String.class))).thenReturn(0).thenReturn(1);
+        when(in.askStr(any(String.class))).thenReturn("" + item.getId());
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new DeleteAction(output));
+        actions.add(new ExitAction());
+        new StartUI(output).init(in, memTracker, actions);
+        assertThat(memTracker.findById(item.getId()), is(nullValue()));
+    }
+
+    @Test
+    public void findByNameActionMok() {
+        Output out = new StubOutput();
+        Input in = mock(Input.class);
+        when(in.askInt(any(String.class))).thenReturn(0).thenReturn(1);
+        when(in.askStr(any(String.class))).thenReturn("New item");
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("New item"));
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindByNameAction(out));
+        actions.add(new ExitAction());
+        new StartUI(out).init(in, memTracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "=== Find items by name ====" + System.lineSeparator()
+                        + item + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+
+        ));
+    }
+
+    @Test
+    public void findByIdActionMok() {
+        Output out = new StubOutput();
+        Input in = mock(Input.class);
+        when(in.askInt(any(String.class))).thenReturn(0).thenReturn(1);
+        when(in.askStr(any(String.class))).thenReturn("1");
+        MemTracker memTracker = new MemTracker();
+        Item item = memTracker.add(new Item("New item"));
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindByIDAction(out));
+        actions.add(new ExitAction());
+        new StartUI(out).init(in, memTracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "=== Find item by id ====" + System.lineSeparator()
+                        + item + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+
+        ));
     }
 }

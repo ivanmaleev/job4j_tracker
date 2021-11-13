@@ -80,5 +80,4 @@ public class MemTrackerTest {
         memTracker.delete(id);
         assertThat(memTracker.findById(id), is(nullValue()));
     }
-
 }
