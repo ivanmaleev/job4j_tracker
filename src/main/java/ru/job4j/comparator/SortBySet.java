@@ -7,6 +7,6 @@ import java.util.TreeSet;
 
 public class SortBySet {
     public static Set<String> sort(List<String> list) {
-        return new TreeSet(new HashSet(list));
+        return new TreeSet<>(new HashSet<>(list));
     }
 }
