@@ -32,20 +32,28 @@ public class HbmTracker implements Store, AutoCloseable {
     public boolean replace(int id, Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.update(item);
+        Item itemDB = session.load(Item.class, id);
+        if (itemDB != item) {
+            session.update(item);
+            session.getTransaction().commit();
+            return true;
+        }
         session.getTransaction().commit();
-        return true;
+        return false;
     }
 
     @Override
     public boolean delete(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item item = new Item(null);
-        item.setId(id);
-        session.delete(item);
+        Item item = session.load(Item.class, id);
+        if (item != null) {
+            session.delete(item);
+            session.getTransaction().commit();
+            return true;
+        }
         session.getTransaction().commit();
-        return true;
+        return false;
     }
 
     @Override
