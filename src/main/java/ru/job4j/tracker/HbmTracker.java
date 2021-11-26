@@ -32,35 +32,35 @@ public class HbmTracker implements Store, AutoCloseable {
     public boolean replace(int id, Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item itemDB = session.load(Item.class, id);
-        if (itemDB != item) {
-            session.update(item);
-            session.getTransaction().commit();
-            return true;
-        }
+        Query query = session.createQuery("update Item set name =: name,"
+                + " created = : created, description =: description where id =: id");
+        query.setParameter("id", id);
+        query.setParameter("name", item.getName());
+        query.setParameter("created", item.getCreated());
+        query.setParameter("description", item.getDescription());
+        int i = query.executeUpdate();
         session.getTransaction().commit();
-        return false;
+        session.close();
+        return i != 0;
     }
 
     @Override
     public boolean delete(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item item = session.load(Item.class, id);
-        if (item != null) {
-            session.delete(item);
-            session.getTransaction().commit();
-            return true;
-        }
+        Query query = session.createQuery("delete Item where id =: id");
+        query.setParameter("id", id);
+        int i = query.executeUpdate();
         session.getTransaction().commit();
-        return false;
+        session.close();
+        return i != 0;
     }
 
     @Override
     public List<Item> findAll() {
         Session session = sf.openSession();
         session.beginTransaction();
-        List<Item> items = session.createQuery("from ru.job4j.tracker.Item").list();
+        List<Item> items = session.createQuery("from Item").list();
         session.getTransaction().commit();
         session.close();
         return items;
@@ -70,7 +70,7 @@ public class HbmTracker implements Store, AutoCloseable {
     public List<Item> findByName(String name) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Query query = session.createQuery("from ru.job4j.tracker.Item where name = : name");
+        Query query = session.createQuery("from Item where name = : name");
         query.setParameter("name", name);
         List<Item> items = query.list();
         session.getTransaction().commit();
