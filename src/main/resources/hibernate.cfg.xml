@@ -18,5 +18,7 @@
         <property name="use_sql_comments">true</property>
 
         <mapping class="ru.job4j.tracker.Item" />
+        <mapping class="ru.job4j.hibernate.CarBrand" />
+        <mapping class="ru.job4j.hibernate.CarModel" />
     </session-factory>
 </hibernate-configuration>
