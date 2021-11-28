@@ -20,5 +20,7 @@
         <mapping class="ru.job4j.tracker.Item" />
         <mapping class="ru.job4j.hibernate.CarBrand" />
         <mapping class="ru.job4j.hibernate.CarModel" />
+        <mapping class="ru.job4j.hibernate.Author" />
+        <mapping class="ru.job4j.hibernate.Book" />
     </session-factory>
 </hibernate-configuration>
