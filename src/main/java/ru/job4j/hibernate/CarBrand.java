@@ -42,7 +42,7 @@ public class CarBrand {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "carBrand", fetch = FetchType.EAGER)
     public List<CarModel> getModels() {
         return models;
     }
@@ -53,5 +53,14 @@ public class CarBrand {
 
     public void addModel(CarModel model) {
         this.models.add(model);
+    }
+
+    @Override
+    public String toString() {
+        return "CarBrand{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", models=" + models
+                + '}';
     }
 }

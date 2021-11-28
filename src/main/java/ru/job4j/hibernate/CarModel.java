@@ -8,6 +8,7 @@ public class CarModel {
 
     private int id;
     private String name;
+    private CarBrand carBrand;
 
     public CarModel(int id, String name) {
         this.id = id;
@@ -37,5 +38,23 @@ public class CarModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "carbrand_id")
+    public CarBrand getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(CarBrand carBrand) {
+        this.carBrand = carBrand;
+    }
+
+    @Override
+    public String toString() {
+        return "CarModel{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + '}';
     }
 }

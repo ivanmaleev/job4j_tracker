@@ -36,6 +36,12 @@ public class AutoSalon {
             session.beginTransaction();
             session.save(brand);
             session.getTransaction().commit();
+
+            session.beginTransaction();
+            List<CarBrand> list = session.createQuery(
+                    "select distinct cb from CarBrand cb join fetch cb.models").list();
+            session.getTransaction().commit();
+            list.forEach(System.out::println);
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
