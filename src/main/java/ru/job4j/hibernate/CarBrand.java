@@ -7,9 +7,11 @@ import java.util.List;
 @Entity
 @Table(name = "carbrand")
 public class CarBrand {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @OneToMany(mappedBy = "carBrand", fetch = FetchType.EAGER)
     private List<CarModel> models = new ArrayList<>();
 
     public CarBrand(int id, String name) {
@@ -24,8 +26,6 @@ public class CarBrand {
         this.name = name;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -42,7 +42,6 @@ public class CarBrand {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "carBrand", fetch = FetchType.EAGER)
     public List<CarModel> getModels() {
         return models;
     }

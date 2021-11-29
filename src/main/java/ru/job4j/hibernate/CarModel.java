@@ -5,9 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "carmodel")
 public class CarModel {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "carbrand_id")
     private CarBrand carBrand;
 
     public CarModel(int id, String name) {
@@ -22,8 +25,6 @@ public class CarModel {
     public CarModel() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -40,8 +41,6 @@ public class CarModel {
         this.name = name;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "carbrand_id")
     public CarBrand getCarBrand() {
         return carBrand;
     }

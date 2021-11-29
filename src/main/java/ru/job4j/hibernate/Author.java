@@ -7,8 +7,11 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "author")
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Book> books = new ArrayList<>();
 
     public Author(int id, String name) {
@@ -23,8 +26,6 @@ public class Author {
     public Author() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -41,7 +42,6 @@ public class Author {
         this.name = name;
     }
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     public List<Book> getBooks() {
         return books;
     }

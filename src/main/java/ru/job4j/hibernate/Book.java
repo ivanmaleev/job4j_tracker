@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "book")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
@@ -20,8 +22,6 @@ public class Book {
     public Book() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
