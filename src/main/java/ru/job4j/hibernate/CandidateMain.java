@@ -63,6 +63,7 @@ public class CandidateMain {
             session.saveOrUpdate(cand1c);
             */
 
+
             Query<Candidate> query = session.createQuery("select distinct c from Candidate c "
                     + "join fetch c.vacanciesBD vbd "
                     + "join fetch vbd.vacancies v "
