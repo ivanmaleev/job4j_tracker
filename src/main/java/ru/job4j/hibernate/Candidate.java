@@ -14,6 +14,8 @@ public class Candidate {
     private String name;
     private String experience;
     private int salary;
+    @OneToOne
+    private VacanciesBD vacanciesBD;
 
     public Candidate() {
     }
@@ -63,6 +65,14 @@ public class Candidate {
         this.salary = salary;
     }
 
+    public VacanciesBD getVacanciesBD() {
+        return vacanciesBD;
+    }
+
+    public void setVacanciesBD(VacanciesBD vacanciesBD) {
+        this.vacanciesBD = vacanciesBD;
+    }
+
     @Override
     public String toString() {
         return "Candidate{"
@@ -70,6 +80,7 @@ public class Candidate {
                 + ", name='" + name + '\''
                 + ", experience='" + experience + '\''
                 + ", salary=" + salary
+                + ", vacanciesBD=" + vacanciesBD
                 + '}';
     }
 }

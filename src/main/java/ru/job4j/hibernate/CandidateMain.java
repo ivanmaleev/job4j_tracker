@@ -1,11 +1,11 @@
 package ru.job4j.hibernate;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class CandidateMain {
             session.beginTransaction();
 
             /*
+
             Candidate middle = new Candidate("Mike", "Middle", 100000);
             Candidate junior = new Candidate("Joe", "junior", 50000);
             Candidate senjor = new Candidate("Alex", "senjor", 150000);
@@ -26,7 +27,6 @@ public class CandidateMain {
             session.save(middle);
             session.save(junior);
             session.save(senjor);
-             */
 
             List<Candidate> allCandidates = session.createQuery(
                     "from Candidate ")
@@ -55,6 +55,21 @@ public class CandidateMain {
                     "DELETE from Candidate where id = : id")
                     .setParameter("id", 3);
             query.executeUpdate();
+
+            Candidate cand1c = new Candidate("Mila", "1c sen", 120000);
+            VacanciesBD vacanciesBD = new VacanciesBD();
+            vacanciesBD.setId(1);
+            cand1c.setVacanciesBD(vacanciesBD);
+            session.saveOrUpdate(cand1c);
+            */
+
+            Query<Candidate> query = session.createQuery("select distinct c from Candidate c "
+                    + "join fetch c.vacanciesBD vbd "
+                    + "join fetch vbd.vacancies v "
+                    + "where c.id = : id")
+                    .setParameter("id", 4);
+            List<Candidate> allCandidates = query.list();
+            allCandidates.forEach(System.out::println);
 
             session.getTransaction().commit();
             session.close();
