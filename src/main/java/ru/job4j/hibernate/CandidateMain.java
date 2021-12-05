@@ -39,7 +39,7 @@ public class CandidateMain {
                     .uniqueResult();
             System.out.println(cand);
             */
-            
+
             List<Candidate> candidates = session.createQuery(
                     "from Candidate where name =: name")
                     .setParameter("name", "Joe")
