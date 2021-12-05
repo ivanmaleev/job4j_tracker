@@ -1,7 +1,5 @@
 package ru.job4j.hibernate;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
 @Entity

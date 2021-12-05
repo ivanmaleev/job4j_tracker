@@ -38,13 +38,15 @@ public class CandidateMain {
                     .setParameter("id", 1)
                     .uniqueResult();
             System.out.println(cand);
-
-            Candidate cand2 = (Candidate) session.createQuery(
+            */
+            
+            List<Candidate> candidates = session.createQuery(
                     "from Candidate where name =: name")
                     .setParameter("name", "Joe")
-                    .uniqueResult();
-            System.out.println(cand2);
+                    .list();
+            candidates.forEach(System.out::println);
 
+            /*
             Query query = session.createQuery(
                     "UPDATE Candidate c set c.name = : name where id = : id")
                     .setParameter("name", "AlexC")
@@ -61,7 +63,6 @@ public class CandidateMain {
             vacanciesBD.setId(1);
             cand1c.setVacanciesBD(vacanciesBD);
             session.saveOrUpdate(cand1c);
-            */
 
             Query<Candidate> query = session.createQuery(
                     "select distinct c from Candidate c "
@@ -71,6 +72,7 @@ public class CandidateMain {
                     .setParameter("id", 4);
             List<Candidate> allCandidates = query.list();
             allCandidates.forEach(System.out::println);
+             */
 
             session.getTransaction().commit();
             session.close();
