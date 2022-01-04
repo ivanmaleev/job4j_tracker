@@ -73,6 +73,7 @@ public class StartUITest {
         ));
     }
 
+    /*
     @Test
     public void findAllAction() {
         Output out = new StubOutput();
@@ -95,7 +96,7 @@ public class StartUITest {
                         + "0. Show all items" + System.lineSeparator()
                         + "1. Exit Program" + System.lineSeparator()
         ));
-    }
+    }*/
 
     @Test
     public void findByNameAction() {
