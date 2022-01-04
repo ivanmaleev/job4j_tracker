@@ -67,6 +67,11 @@ public class MemTracker implements Store {
     }
 
     @Override
+    public void findAll(Observe<Item> observe) {
+
+    }
+
+    @Override
     public void close() throws Exception {
     }
 }

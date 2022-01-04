@@ -87,6 +87,21 @@ public class SqlTracker implements Store {
     }
 
     @Override
+    public void findAll(Observe<Item> observe) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items")) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Item item = new Item(resultSet.getInt("id"), resultSet.getString("name"));
+                item.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                observe.receive(item);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*@Override
     public List<Item> findAll() {
         List<Item> result = new ArrayList<>();
         try (PreparedStatement statement =
@@ -101,7 +116,7 @@ public class SqlTracker implements Store {
             e.printStackTrace();
         }
         return result;
-    }
+    }*/
 
     @Override
     public List<Item> findByName(String key) {

@@ -39,7 +39,7 @@ public class HbmTrackerTest {
         assertTrue(store.delete(add.getId()));
     }
 
-    @Test
+    /* @Test
     public void whenFindAll() {
         Store store = new HbmTracker();
         Item item = new Item("Item");
@@ -50,7 +50,7 @@ public class HbmTrackerTest {
         Item add2 = store.add(item2);
         List<Item> list = List.of(add, add2);
         assertThat(store.findAll(), is(list));
-    }
+    }*/
 
     @Test
     public void whenFindByName() {
